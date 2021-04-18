@@ -26,10 +26,13 @@ services:
             context: .
             dockerfile: ./php/Dockerfile
         container_name: php74-container
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
         ports:
             - "9000:9000"
         volumes:
             - ./app:/var/www/project
+            - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
         networks:
             - nginx-php74-mysql8-node
 
